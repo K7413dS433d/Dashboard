@@ -35,7 +35,8 @@ export class Transactions {
     let id = 1;
     let data = this.data.transactions
       .map((item) => {
-        return `<tr customer_id="${item.customer_id}">
+        return `<tr data-bs-toggle="modal"
+      data-bs-target="#full-screen-modal" customer_id="${item.customer_id}">
                         <th scope="row">${id++}</th>
                         <td>${this.getNameByID(item.customer_id)}</td>
                         <td>&dollar; ${item.amount}</td>
@@ -47,10 +48,11 @@ export class Transactions {
   }
 
   getLatestCustomers() {
-    const data = this.data.transactions.reverse();
+    const data = [...this.data.transactions].reverse();
     let res = "";
     for (let i = 0; i < 5; i++) {
-      res += `<tr customer_id="${data[i].customer_id}">
+      res += `<tr data-bs-toggle="modal"
+      data-bs-target="#full-screen-modal" customer_id="${data[i].customer_id}">
                         <th scope="row">${i + 1}</th>
                         <td>${this.getNameByID(data[i].customer_id)}</td>
                         <td>&dollar; ${data[i].amount}</td>
@@ -60,20 +62,74 @@ export class Transactions {
     return res;
   }
 
-//   getCustomerInfoByID(id) {}
+  filterByAmount(amount) {
+    let data = this.data.transactions;
+    let res = "";
+    let i = 1;
+    for (const iterator of data) {
+      if (iterator.amount === amount) {
+        res += `<tr data-bs-toggle="modal"
+      data-bs-target="#full-screen-modal" customer_id="${iterator.customer_id}">
+                        <th scope="row">${i++}</th>
+                        <td>${this.getNameByID(iterator.customer_id)}</td>
+                        <td>&dollar; ${iterator.amount}</td>
+                        <td class="d-none d-md-block">${iterator.date}</td>
+                      </tr>`;
+      }
+    }
+    return res;
+  }
 
   filterByName(name) {
     let id = 1;
     let data = this.data.transactions;
     let res = "";
     for (let i = 0; i < data.length; i++) {
-      if (this.getNameByID(data[i].customer_id).startWith(name)) {
-        res += `<tr customer_id="${data[i].customer_id}">
+      if (
+        this.getNameByID(data[i].customer_id)
+          .toLowerCase()
+          .includes(name.toLowerCase())
+      ) {
+        res += `<tr data-bs-toggle="modal"
+      data-bs-target="#full-screen-modal" customer_id="${data[i].customer_id}">
                         <th scope="row">${id++}</th>
                         <td>${this.getNameByID(data[i].customer_id)}</td>
                         <td>&dollar; ${data[i].amount}</td>
                         <td class="d-none d-md-block">${data[i].date}</td>
                       </tr>`;
+      }
+    }
+    return res;
+  }
+
+  filterById(id) {
+    let data = this.data.transactions;
+    let res = "";
+    let i = 1;
+    for (const iterator of data) {
+      if (iterator.customer_id === id) {
+        res += `<tr data-bs-toggle="modal"
+      data-bs-target="#full-screen-modal" customer_id="${iterator.customer_id}">
+                        <th scope="row">${i++}</th>
+                        <td>${this.getNameByID(iterator.customer_id)}</td>
+                        <td>&dollar; ${iterator.amount}</td>
+                        <td class="d-none d-md-block">${iterator.date}</td>
+                      </tr>`;
+      }
+    }
+    return res;
+  }
+
+  getChartConfigurations(id) {
+    let data = this.data.transactions;
+    let res = {
+      dates: [],
+      amounts: [],
+    };
+    for (const iterator of data) {
+      if (iterator.customer_id === id) {
+        res.dates.push(iterator.date);
+        res.amounts.push(iterator.amount);
       }
     }
     return res;

@@ -47,6 +47,10 @@ table td {
   padding: 15px !important;
 }
 
+.clickable tr:hover {
+  cursor: pointer;
+}
+
 /*calender start*/
 
 .calendar {
@@ -248,4 +252,16 @@ table td {
 /*modal*/
 #exampleModalLabel {
   color: var(--primary-color);
+}
+
+/*chart*/
+#chart {
+  height: 400px !important;
+  width: 70% !important;
+}
+
+@media (max-width: 768px) {
+  #chart {
+    width: 100% !important;
+  }
 }

@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>dashboard</title>
     <!-- icon  -->
-    <!-- <link rel="icon" href="./assets/icons/image.png" /> -->
-
+    <link rel="icon" href="./assets/icons/icon.png" />
     <!-- font-awesome -->
     <link rel="stylesheet" href="./css/all.min.css" />
     <!-- bootstrap  -->
@@ -29,7 +28,7 @@
           aria-selected="true"
         >
           <div class="d-flex gap-3 align-items-center">
-            <span class="d-none d-md-block">Home</span
+            <span class="d-none d-md-block fs-4">Home</span
             ><i class="fa-solid fa-chart-column fa-lg"></i>
           </div>
         </button>
@@ -44,7 +43,7 @@
           aria-selected="false"
         >
           <div class="d-flex gap-3 align-items-center">
-            <span class="d-none d-md-block">Customers</span
+            <span class="d-none d-md-block fs-4">Customers</span
             ><i class="fa-solid fa-user-group"></i>
           </div>
         </button>
@@ -61,7 +60,7 @@
         aria-labelledby="nav-home-tab"
         tabindex="0"
       >
-        <div class="container-fluid" id="home-tab">
+        <div class="container-fluid p-md-5" id="home-tab">
           <div class="row justify-content-center">
             <!-- card 1 -->
             <div class="col-md-6 col-lg-4 mb-4">
@@ -129,7 +128,7 @@
                           </th>
                         </tr>
                       </thead>
-                      <tbody id="five-customers"></tbody>
+                      <tbody class="clickable" id="five-customers"></tbody>
                     </table>
                   </div>
                 </div>
@@ -150,7 +149,7 @@
         aria-labelledby="nav-profile-tab"
         tabindex="0"
       >
-        <div class="container-fluid">
+        <div class="container-fluid p-md-5">
           <div class="row">
             <div class="col-12">
               <div class="inner">
@@ -161,6 +160,7 @@
                       <div class="checkbox-wrapper-16 rounded-5">
                         <label class="checkbox-wrapper">
                           <input
+                            id="name"
                             class="checkbox-input"
                             type="radio"
                             name="filter"
@@ -175,6 +175,7 @@
                       <div class="checkbox-wrapper-16 rounded-5">
                         <label class="checkbox-wrapper">
                           <input
+                            id="amount"
                             class="checkbox-input"
                             type="radio"
                             name="filter"
@@ -219,7 +220,7 @@
                         </th>
                       </tr>
                     </thead>
-                    <tbody id="all-customers"></tbody>
+                    <tbody class="clickable" id="all-customers"></tbody>
                   </table>
                 </div>
               </div>
@@ -231,17 +232,6 @@
     <!-- tabs end  -->
 
     <!-- modal start  -->
-    <!-- Button trigger modal -->
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#full-screen-modal"
-    >
-      Launch demo modal
-    </button>
-
-    <!-- Modal -->
     <div
       class="modal fade"
       id="full-screen-modal"
@@ -249,7 +239,7 @@
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-xl">
+      <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">
@@ -262,7 +252,30 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">...</div>
+          <div class="modal-body">
+            <div class="container-fluid">
+              <div
+                class="chart mb-3 p-x-lg-5 w-100 d-flex justify-content-center"
+              >
+                <canvas id="chart"></canvas>
+              </div>
+              <table
+                class="table align-middle rounded-4 fs-5 overflow-hidden shadow"
+              >
+                <thead>
+                  <tr>
+                    <th class="opacity-75" scope="col">id</th>
+                    <th class="opacity-75" scope="col">Name</th>
+                    <th class="opacity-75" scope="col">Transaction amount</th>
+                    <th class="opacity-75 d-none d-md-block" scope="col">
+                      Transaction Date
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="customer-transactions"></tbody>
+              </table>
+            </div>
+          </div>
           <div class="modal-footer">
             <button
               type="button"
@@ -280,6 +293,7 @@
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="./js/jquery-3.7.1.min.js"></script>
     <script src="./js/jquery-ui.min.js"></script>
+    <script src="./js/chart.umd.js"></script>
     <script src="./js/index.js" type="module"></script>
   </body>
 </html>
