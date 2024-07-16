@@ -1,5 +1,4 @@
 import { Transactions } from "./Transactions.js";
-// import { Chart } from "./chart.js";
 
 const baseUrl = "https://mocki.io/v1/d83c4274-7553-4adc-91e1-2a202e94c6f3";
 
