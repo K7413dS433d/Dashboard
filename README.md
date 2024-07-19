@@ -24,14 +24,15 @@ The Dashboard project is a web application designed to provide users with a comp
 To set up the project locally, follow these steps:
 
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/K7413dS433d/Dashboard.git
    ```
 2. **Navigate to the project directory**:
+
    ```bash
    cd Dashboard
    ```
-3. **Open index.html**
 
 ## Usage
 
