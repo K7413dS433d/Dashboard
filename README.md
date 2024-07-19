@@ -42,7 +42,7 @@ After setting up the project, you can access the dashboard by opening the `index
 
 You can view a live demo of the project at the following link:
 
-[Live Demo of Dashboard](https://your-live-demo-link-here.com)
+[Live Demo of Dashboard](https://k7413ds433d.github.io/Dashboard/)
 
 ## Video
 
