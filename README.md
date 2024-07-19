@@ -31,14 +31,7 @@ To set up the project locally, follow these steps:
    ```bash
    cd Dashboard
    ```
-3. **Install dependencies** (if any):
-   ```bash
-   npm install
-   ```
-4. **Run the application**:
-   ```bash
-   npm start
-   ```
+3. **Open index.html**:
 
 ## Usage
 
