@@ -44,6 +44,12 @@ To set up the project locally, follow these steps:
 
 After setting up the project, you can access the dashboard by opening the `index.html` file in your web browser. Customize the dashboard by adding or removing widgets, and connect it to your data source for real-time updates.
 
+## Live Demo
+
+You can view a live demo of the project at the following link:
+
+[Live Demo of Dashboard](https://your-live-demo-link-here.com)
+
 ## Video
 
 For a visual demonstration of the Dashboard and its features, please watch the video below:
