@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Dashboard project is a web application designed to provide users with a comprehensive and customizable interface for managing and visualizing data. This project leverages modern web technologies to create an interactive and user-friendly experience.
+The Dashboard project is a web application designed to provide users with a comprehensive interface for managing and visualizing data. This project leverages modern web technologies to create a user-friendly experience.
 
 ## Features
 
