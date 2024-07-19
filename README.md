@@ -31,7 +31,7 @@ To set up the project locally, follow these steps:
    ```bash
    cd Dashboard
    ```
-3. **Open index.html**:
+3. **Open index.html**
 
 ## Usage
 
