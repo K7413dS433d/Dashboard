@@ -1,6 +1,8 @@
 import { Transactions } from "./Transactions.js";
 
 const baseUrl = "https://mocki.io/v1/d83c4274-7553-4adc-91e1-2a202e94c6f3";
+let myChart;
+let transactions;
 
 /*calender */
 $(function () {
@@ -49,15 +51,23 @@ function drawChart(configuration) {
 
   const crx = document.getElementById("chart").getContext("2d");
 
-  const myChart = new Chart(crx, config);
+  // Check if a chart already exists
+  if (myChart) {
+    myChart.destroy(); // Destroy the existing chart
+  }
+
+  myChart = new Chart(crx, config);
 }
 
 //set data
 $(document).ready(async () => {
-  const data = await fetch(baseUrl);
-  const formatted = await data.json();
-  const transactions = new Transactions(formatted);
-
+  try {
+    const data = await fetch(baseUrl);
+    const formatted = await data.json();
+    transactions = new Transactions(formatted);
+  } catch (error) {
+    console.log("error", error.message);
+  }
   $("#customer-total").html(transactions.getCustomersNumber());
   $("#total-transaction").html(transactions.getTransactionsNumber());
   $("#total-amount").html(`${transactions.getTotalAmount()} &dollar;`);
@@ -77,16 +87,16 @@ $(document).ready(async () => {
       }
     }
   });
-
-  //open modal with data
-  $(".clickable tr").on("click", function () {
-    const id = Number($(this).attr("customer_id"));
-    $("#customer-transactions").html(transactions.filterById(id));
-    drawChart(transactions.getChartConfigurations(id));
-  });
 });
 
 //empty search when filter clicked
 $("input[type=radio]").on("click", function () {
   $("#search").val("");
 });
+
+//open modal with data
+window.openChart = function (id) {
+  $("#customer-transactions").html(transactions.filterById(id));
+  drawChart(transactions.getChartConfigurations(id));
+  $("#full-screen-modal").modal("show");
+};

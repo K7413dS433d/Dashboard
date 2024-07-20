@@ -35,8 +35,7 @@ export class Transactions {
     let id = 1;
     let data = this.data.transactions
       .map((item) => {
-        return `<tr data-bs-toggle="modal"
-      data-bs-target="#full-screen-modal" customer_id="${item.customer_id}">
+        return `<tr onclick="openChart(${item.customer_id})">
                         <th scope="row">${id++}</th>
                         <td>${this.getNameByID(item.customer_id)}</td>
                         <td>&dollar; ${item.amount}</td>
@@ -51,8 +50,7 @@ export class Transactions {
     const data = [...this.data.transactions].reverse();
     let res = "";
     for (let i = 0; i < 5; i++) {
-      res += `<tr data-bs-toggle="modal"
-      data-bs-target="#full-screen-modal" customer_id="${data[i].customer_id}">
+      res += `<tr  onclick="openChart(${data[i].customer_id})">
                         <th scope="row">${i + 1}</th>
                         <td>${this.getNameByID(data[i].customer_id)}</td>
                         <td>&dollar; ${data[i].amount}</td>
@@ -68,8 +66,7 @@ export class Transactions {
     let i = 1;
     for (const iterator of data) {
       if (iterator.amount === amount) {
-        res += `<tr data-bs-toggle="modal"
-      data-bs-target="#full-screen-modal" customer_id="${iterator.customer_id}">
+        res += `<tr  onclick="openChart(${data[i].customer_id})">
                         <th scope="row">${i++}</th>
                         <td>${this.getNameByID(iterator.customer_id)}</td>
                         <td>&dollar; ${iterator.amount}</td>
@@ -90,8 +87,7 @@ export class Transactions {
           .toLowerCase()
           .includes(name.toLowerCase())
       ) {
-        res += `<tr data-bs-toggle="modal"
-      data-bs-target="#full-screen-modal" customer_id="${data[i].customer_id}">
+        res += `<tr onclick="openChart(${data[i].customer_id})">
                         <th scope="row">${id++}</th>
                         <td>${this.getNameByID(data[i].customer_id)}</td>
                         <td>&dollar; ${data[i].amount}</td>
@@ -108,8 +104,7 @@ export class Transactions {
     let i = 1;
     for (const iterator of data) {
       if (iterator.customer_id === id) {
-        res += `<tr data-bs-toggle="modal"
-      data-bs-target="#full-screen-modal" customer_id="${iterator.customer_id}">
+        res += `<tr  onclick="openChart(${data[i].customer_id})">
                         <th scope="row">${i++}</th>
                         <td>${this.getNameByID(iterator.customer_id)}</td>
                         <td>&dollar; ${iterator.amount}</td>
