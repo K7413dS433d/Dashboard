@@ -48,4 +48,5 @@ You can view a live demo of the project at the following link:
 
 For a visual demonstration of the Dashboard and its features, please watch the video below:
 
-[![Dashboard Video](https://img.youtube.com/vi/VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=VIDEO_ID_HERE)
+
+https://github.com/user-attachments/assets/c9edb2a9-0c72-4dc6-a6b8-fc481324db1a
