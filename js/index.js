@@ -49,17 +49,15 @@ function drawChart(configuration) {
     },
   };
 
-  const crx = document.getElementById("chart").getContext("2d");
-
   // Check if a chart already exists
   if (myChart) {
     myChart.destroy(); // Destroy the existing chart
   }
-
+  const crx = document.getElementById("chart").getContext("2d");
   myChart = new Chart(crx, config);
 }
 
-//set data
+//data set when open dashboard
 $(document).ready(async () => {
   try {
     const data = await fetch(baseUrl);
@@ -73,20 +71,21 @@ $(document).ready(async () => {
   $("#total-amount").html(`${transactions.getTotalAmount()} &dollar;`);
   $("#five-customers").html(transactions.getLatestCustomers());
   $("#all-customers").html(transactions.getAllCustomers());
+});
 
-  //search
-  $("#search").on("input", function () {
-    if ($("#name").prop("checked")) {
-      $("#all-customers").html(transactions.filterByName($(this).val()));
-    } else if ($("#amount").prop("checked")) {
-      $("#all-customers").html(
-        transactions.filterByAmount(Number($(this).val()))
-      );
-      if (!$(this).val()) {
-        $("#all-customers").html(transactions.getAllCustomers());
-      }
+//search
+$("#search").on("input", function () {
+  if ($("#name").prop("checked")) {
+    $("#all-customers").html(transactions.filterByName($(this).val()));
+  }
+  if ($("#amount").prop("checked")) {
+    $("#all-customers").html(
+      transactions.filterByAmount(Number($(this).val()))
+    );
+    if (!$(this).val()) {
+      $("#all-customers").html(transactions.getAllCustomers());
     }
-  });
+  }
 });
 
 //empty search when filter clicked

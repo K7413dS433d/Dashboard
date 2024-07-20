@@ -47,11 +47,15 @@ export class Transactions {
   }
 
   getLatestCustomers() {
-    const data = [...this.data.transactions].reverse();
+    const data = this.data.transactions;
     let res = "";
-    for (let i = 0; i < 5; i++) {
+    for (
+      let i = data.length - 1, j = 1;
+      i > Math.min(data.length, data.length - 6);
+      i--
+    ) {
       res += `<tr  onclick="openChart(${data[i].customer_id})">
-                        <th scope="row">${i + 1}</th>
+                        <th scope="row">${j++}</th>
                         <td>${this.getNameByID(data[i].customer_id)}</td>
                         <td>&dollar; ${data[i].amount}</td>
                         <td class="d-none d-md-block">${data[i].date}</td>
@@ -61,12 +65,11 @@ export class Transactions {
   }
 
   filterByAmount(amount) {
-    let data = this.data.transactions;
     let res = "";
     let i = 1;
-    for (const iterator of data) {
+    for (const iterator of this.data.transactions) {
       if (iterator.amount === amount) {
-        res += `<tr  onclick="openChart(${data[i].customer_id})">
+        res += `<tr  onclick="openChart(${iterator.customer_id})">
                         <th scope="row">${i++}</th>
                         <td>${this.getNameByID(iterator.customer_id)}</td>
                         <td>&dollar; ${iterator.amount}</td>
@@ -79,19 +82,18 @@ export class Transactions {
 
   filterByName(name) {
     let id = 1;
-    let data = this.data.transactions;
     let res = "";
-    for (let i = 0; i < data.length; i++) {
+    for (const iterator of this.data.transactions) {
       if (
-        this.getNameByID(data[i].customer_id)
+        this.getNameByID(iterator.customer_id)
           .toLowerCase()
           .includes(name.toLowerCase())
       ) {
-        res += `<tr onclick="openChart(${data[i].customer_id})">
+        res += `<tr onclick="openChart(${iterator.customer_id})">
                         <th scope="row">${id++}</th>
-                        <td>${this.getNameByID(data[i].customer_id)}</td>
-                        <td>&dollar; ${data[i].amount}</td>
-                        <td class="d-none d-md-block">${data[i].date}</td>
+                        <td>${this.getNameByID(iterator.customer_id)}</td>
+                        <td>&dollar; ${iterator.amount}</td>
+                        <td class="d-none d-md-block">${iterator.date}</td>
                       </tr>`;
       }
     }
@@ -104,7 +106,7 @@ export class Transactions {
     let i = 1;
     for (const iterator of data) {
       if (iterator.customer_id === id) {
-        res += `<tr  onclick="openChart(${data[i].customer_id})">
+        res += `<tr  onclick="openChart(${iterator.customer_id})">
                         <th scope="row">${i++}</th>
                         <td>${this.getNameByID(iterator.customer_id)}</td>
                         <td>&dollar; ${iterator.amount}</td>
